@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import "./App.css";
+import University from "./components/University";
+
+export const TourContext = createContext();
 
 function App() {
+  const announcement = "Sports";
+  const [count, setCount] = useState(0);
+  const tour = "Bandarban, Chottogram"
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TourContext.Provider value={tour}>
+      <div className="App">
+        <button onClick={() => setCount((prev) => prev + 1)}>
+          Increase value
+        </button>
+        <h1>University</h1>
+        <University count={count} announcement={announcement} />
+      </div>
+    </TourContext.Provider>
   );
 }
 
